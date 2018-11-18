@@ -25,5 +25,19 @@ module.exports = {
       'error',
       'windows',
     ],
+    // 'class-methods-use-this': ['error', {
+    //   exceptMethods: [
+    //     'render',
+    //     'getInitialState',
+    //     'getDefaultProps',
+    //     'componentWillMount',
+    //     'componentDidMount',
+    //     'componentWillReceiveProps',
+    //     'shouldComponentUpdate',
+    //     'componentWillUpdate',
+    //     'componentDidUpdate',
+    //     'componentWillUnmount',
+    //   ],
+    // }],
   },
 };

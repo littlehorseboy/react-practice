@@ -10,8 +10,7 @@ class SelectGender extends React.Component {
     this.changeGender = this.changeGender.bind(this);
   }
 
-  changeGender(customParam, e) {
-    console.log(customParam);
+  changeGender(e) {
     console.log(e.target);
     this.setState({
       gender: e.target.value,
@@ -21,7 +20,7 @@ class SelectGender extends React.Component {
   render() {
     return (
       <div>
-        <select onChange={this.changeGender.bind(this, 'param')}>
+        <select onChange={this.changeGender.bind(this)}>
           <option value="M">男</option>
           <option value="W">女</option>
         </select>
