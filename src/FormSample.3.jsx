@@ -9,7 +9,6 @@ class EasyForm extends React.Component {
       name: '預設姓名',
     };
     this.changeState = this.changeState.bind(this);
-    this.submitForm = this.submitForm.bind(this);
   }
 
   changeState(e) {
@@ -18,14 +17,9 @@ class EasyForm extends React.Component {
     });
   }
 
-  submitForm(e) {
-    e.preventDefault();
-    console.log(this.state.name);
-  }
-
   render() {
     return (
-      <form onSubmit={this.submitForm}>
+      <form>
         <label>姓名：</label>
         <input name="name" value={this.state.name} onChange={this.changeState} />
         <input type="submit" value="送出表單" />
