@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const autoprefixer = require('autoprefixer');
 
 module.exports = {
@@ -32,11 +33,14 @@ module.exports = {
         test: /\.css$/,
         use: [
           {
-            loader: 'style-loader',
-            options: {
-              sourceMap: true,
-            },
+            loader: MiniCssExtractPlugin.loader,
           },
+          // {
+          //   loader: 'style-loader',
+          //   options: {
+          //     sourceMap: true,
+          //   },
+          // },
           {
             loader: 'css-loader',
             options: {
@@ -57,11 +61,14 @@ module.exports = {
         test: /\.(scss|sass)$/,
         use: [
           {
-            loader: 'style-loader',
-            options: {
-              sourceMap: true,
-            },
+            loader: MiniCssExtractPlugin.loader,
           },
+          // {
+          //   loader: 'style-loader',
+          //   options: {
+          //     sourceMap: true,
+          //   },
+          // },
           {
             loader: 'css-loader',
             options: {
@@ -89,6 +96,10 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: './index.html',
+    }),
+    new MiniCssExtractPlugin({
+      filename: true ? '[name].css' : '[name].[hash].css',
+      chunkFilename: true ? '[id].css' : '[id].[hash].css',
     }),
   ],
 };
