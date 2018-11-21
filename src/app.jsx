@@ -1,11 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
+import styles from './app.scss';
 
 class Title extends React.Component {
   render() {
     return (
-      <h1>{this.props.temperature >= 100 ? '達到沸點!!!' : '未達到沸點...'}</h1>
+      <h1 className={styles['text--palevioletred']}>{this.props.temperature >= 100 ? '達到沸點!!!' : '未達到沸點...'}</h1>
     );
   }
 }
@@ -19,7 +20,7 @@ class InputTemperature extends React.Component {
     return (
       <div>
         <span>目前輸入溫度是: {this.props.temperature} 度 {this.props.type}</span>
-        <input name="temperature" value={this.props.temperature} onChange={this.props.changeState} />
+        <input type="number" name="temperature" value={this.props.temperature} onChange={this.props.changeState} />
         度 {this.props.type}
       </div>
     );
