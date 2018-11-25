@@ -7,8 +7,8 @@ class EasyForm extends React.Component {
     super(props);
     this.state = {
       name: '',
-      introduction: '',
       gender: 'M',
+      introduction: '123\n223',
     };
     this.changeState = this.changeState.bind(this);
     this.submitForm = this.submitForm.bind(this);
