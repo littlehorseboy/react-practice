@@ -45,7 +45,7 @@ class MessageBlock extends React.Component {
 }
 
 MessageBlock.propTypes = {
-  messageData: PropTypes.string,
+  messageData: PropTypes.array,
 };
 
 class SearchBlock extends React.Component {
@@ -63,7 +63,7 @@ class MessageForm extends React.Component {
 }
 
 MessageForm.propTypes = {
-  messageData: PropTypes.arrayr,
+  messageData: PropTypes.array,
 };
 
 ReactDOM.render(<MessageForm messageData={data} />, document.querySelector('#app'));

@@ -23,4 +23,8 @@ class MessageForm extends React.Component {
 
 }
 
+MessageForm.propTypes = {
+  messageData: PropTypes.array,
+}
+
 ReactDOM.render(<MessageForm messageData={data} />, document.querySelector('#app'));
