@@ -14,9 +14,9 @@ class NumericInput extends React.Component {
   }
 
   changeState(e) {
-    if ((e.which < 48 || e.which > 57)) {
-      e.preventDefault();
-    }
+    // if ((e.which < 48 || e.which > 57)) {
+    //   e.preventDefault();
+    // }
 
     // const value = e.target.value.replace(/[^0-9]/g, '');
     const value = e.target.value.replace(/[^0-9.]/g, '');
