@@ -15,35 +15,15 @@ const comment = {
   },
 };
 
-function Avatar(props) {
-  return (
-    <img className="Avatar" src={props.user.avatarUrl} alt={props.user.name} />
-  );
-}
-
-Avatar.propTypes = {
-  user: PropTypes.object,
-};
-
-function UserInfo(props) {
-  return (
-    <div className="UserInfo">
-      <Avatar className="Avatar" user={props.user} />
-      <div className="UserInfo-name">
-        {props.user.name}
-      </div>
-    </div>
-  );
-}
-
-UserInfo.propTypes = {
-  user: PropTypes.object,
-};
-
 function Comment(props) {
   return (
     <div className="Comment">
-      <UserInfo user={props.author} />
+      <div className="UserInfo">
+        <img className="Avatar" src={props.author.avatarUrl} alt={props.author.name} />
+        <div className="UserInfo-name">
+          {props.author.name}
+        </div>
+      </div>
 
       <div className="Comment-text">
         {props.text}
