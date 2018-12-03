@@ -18,9 +18,9 @@ class NowTime extends React.Component {
     setInterval(upTime, 1000);
   }
 
-  /* eslint class-methods-use-this: ["error", { "exceptMethods": ["componentWillUnmount"] }] */
-  componentWillUnmount() {
-    console.log(`移除組件的時間為: ${this.state.time}`);
+  /* eslint class-methods-use-this: ["error", { "exceptMethods": ["componentDidUpdate"] }] */
+  componentDidUpdate() {
+    console.log('時間一分一秒在跑...');
   }
 
   render() {
@@ -29,9 +29,3 @@ class NowTime extends React.Component {
 }
 
 ReactDOM.render(<NowTime content="TEST" />, document.querySelector('#app'));
-
-const removeComponent = () => {
-  ReactDOM.unmountComponentAtNode(document.querySelector('#app'));
-};
-
-setTimeout(removeComponent, 5000);

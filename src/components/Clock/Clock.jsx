@@ -34,14 +34,4 @@ class Clock extends React.Component {
   }
 }
 
-function App() {
-  return (
-    <div>
-      <Clock />
-      <Clock />
-      <Clock />
-    </div>
-  );
-}
-
-ReactDOM.render(<App />, document.querySelector('#app'));
+ReactDOM.render(<Clock />, document.querySelector('#app'));
