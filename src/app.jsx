@@ -11,9 +11,36 @@ function BoilingVerdict(props) {
 
 BoilingVerdict.propTypes = {
   celsius: PropTypes.number,
+};
+
+class Calculator extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      temperature: '',
+    };
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(e) {
+    this.setState({
+      temperature: e.target.value,
+    });
+  }
+
+  render() {
+    const { temperature } = this.state;
+    return (
+      <fieldset>
+        <legend>輸入一個攝氏溫度</legend>
+        <input value={this.state.temperature} onChange={this.handleChange} />
+        <BoilingVerdict celsius={temperature} />
+      </fieldset>
+    );
+  }
 }
 
 ReactDOM.render(
-  <BoilingVerdict />,
+  <Calculator />,
   document.querySelector('#app'),
 );
