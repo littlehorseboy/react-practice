@@ -3,36 +3,53 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import styles from './app.scss';
 
-function SplitPane(props) {
+const stocks = [
+  { category: 'Sporting Goods', price: '$49.99', stocked: true, name: 'Football' },
+  { category: 'Sporting Goods', price: '$9.99', stocked: true, name: 'Baseball' },
+  { category: 'Sporting Goods', price: '$29.99', stocked: false, name: 'Basketball' },
+  { category: 'Electronics', price: '$99.99', stocked: true, name: 'iPod Touch' },
+  { category: 'Electronics', price: '$399.99', stocked: false, name: 'iPhone 5' },
+  { category: 'Electronics', price: '$199.99', stocked: true, name: 'Nexus 7' },
+];
+
+function SearchBar() {
   return (
-    <div className={styles.splitPane}>
-      <div className={styles.splitPane__left}>
-        {props.left}
+    <div>
+      <div>
+        <input />
       </div>
-      <div className={styles.splitPane__right}>
-        {props.right}
+      <div>
+        <input type="checkbox" />
+        <label>Only show products in stock</label>
       </div>
     </div>
   );
 }
 
-SplitPane.propTypes = {
-  left: PropTypes.object,
-  right: PropTypes.object,
-};
-
-function Contacts() {
-  return <div className={styles.contacts}>Contacts</div>;
+function ProductCategoryRow() {
+  return 'category';
 }
 
-function Chat() {
-  return <div className={styles.chat}>Chat</div>;
+function ProductRow() {
+  return 'row';
 }
 
-function App() {
+function ProductTable() {
   return (
-    <SplitPane left={<Contacts />} right={<Chat />} />
+    <div>
+      <ProductCategoryRow />
+      <ProductRow />
+    </div>
   );
 }
 
-ReactDOM.render(<App />, document.querySelector('#app'));
+function FilyerableProductTable() {
+  return (
+    <div>
+      <SearchBar />
+      <ProductTable />
+    </div>
+  );
+}
+
+ReactDOM.render(<FilyerableProductTable />, document.querySelector('#app'));
