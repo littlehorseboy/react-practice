@@ -4,17 +4,32 @@ import PropTypes from 'prop-types';
 import _ from 'lodash';
 import styles from './app.scss';
 
+/* eslint max-len: ["error", { "code": 150 }] */
 /* eslint class-methods-use-this: ["error", { "exceptMethods": ["render"] }] */
 
 class SearchBar extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleChangeCheck = this.handleChangeCheck.bind(this);
+  }
+
+  handleChange(e) {
+    this.props.filterStocks(e.target.value);
+  }
+
+  handleChangeCheck(e) {
+    this.props.filterStockOnly(e.target.checked);
+  }
+
   render() {
     return (
       <div>
         <div>
-          <input placeholder="Search..." onChange={this.props.filterStocks} />
+          <input placeholder="Search..." onChange={this.handleChange} />
         </div>
         <div>
-          <input type="checkbox" onChange={this.props.filterStockOnly} />
+          <input type="checkbox" onChange={this.handleChangeCheck} />
           <label>Only show products in stock</label>
         </div>
       </div>
@@ -104,28 +119,46 @@ class FilterableProductTable extends React.Component {
     super(props);
     this.state = {
       stocks,
+      filterText: '',
+      inStockOnly: false,
     };
     this.filterStocks = this.filterStocks.bind(this);
     this.filterStockOnly = this.filterStockOnly.bind(this);
   }
 
-  filterStocks(e) {
-    if (e.target.value) {
-      this.setState({
-        stocks: this.state.stocks.filter(stock => stock.name.indexOf(e.target.value) !== -1),
-      });
-    } else {
-      this.setState({ stocks });
-    }
+  filterStocks(value) {
+    this.setState({
+      filterText: value,
+    }, () => {
+      this.filterStocksMethod();
+    });
   }
 
-  filterStockOnly(e) {
-    if (e.target.checked) {
+  filterStockOnly(value) {
+    this.setState({
+      inStockOnly: value,
+    }, () => {
+      this.filterStocksMethod();
+    });
+  }
+
+  filterStocksMethod() {
+    if (this.state.inStockOnly && this.state.filterText) {
       this.setState({
-        stocks: this.state.stocks.filter(stock => stock.stocked),
+        stocks: stocks.filter(stock => stock.stocked && stock.name.indexOf(this.state.filterText) !== -1),
+      });
+    } else if (this.state.filterText) {
+      this.setState({
+        stocks: stocks.filter(stock => stock.name.indexOf(this.state.filterText) !== -1),
+      });
+    } else if (this.state.inStockOnly) {
+      this.setState({
+        stocks: stocks.filter(stock => stock.stocked),
       });
     } else {
-      this.setState({ stocks });
+      this.setState({
+        stocks,
+      });
     }
   }
 
