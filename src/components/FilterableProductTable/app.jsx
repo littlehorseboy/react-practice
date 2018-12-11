@@ -93,32 +93,11 @@ ProductTable.propTypes = {
   stocks: PropTypes.array,
 };
 
-const stocks = [
-  {
-    category: 'Sporting Goods', price: '$49.99', stocked: true, name: 'Football',
-  },
-  {
-    category: 'Sporting Goods', price: '$9.99', stocked: true, name: 'Baseball',
-  },
-  {
-    category: 'Sporting Goods', price: '$29.99', stocked: false, name: 'Basketball',
-  },
-  {
-    category: 'Electronics', price: '$99.99', stocked: true, name: 'iPod Touch',
-  },
-  {
-    category: 'Electronics', price: '$399.99', stocked: false, name: 'iPhone 5',
-  },
-  {
-    category: 'Electronics', price: '$199.99', stocked: true, name: 'Nexus 7',
-  },
-];
-
 class FilterableProductTable extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      stocks,
+      stocks: this.props.stocks,
       filterText: '',
       inStockOnly: false,
     };
@@ -145,19 +124,19 @@ class FilterableProductTable extends React.Component {
   filterStocksMethod() {
     if (this.state.inStockOnly && this.state.filterText) {
       this.setState({
-        stocks: stocks.filter(stock => stock.stocked && stock.name.indexOf(this.state.filterText) !== -1),
+        stocks: this.props.stocks.filter(stock => stock.stocked && stock.name.indexOf(this.state.filterText) !== -1),
       });
     } else if (this.state.filterText) {
       this.setState({
-        stocks: stocks.filter(stock => stock.name.indexOf(this.state.filterText) !== -1),
+        stocks: this.props.stocks.filter(stock => stock.name.indexOf(this.state.filterText) !== -1),
       });
     } else if (this.state.inStockOnly) {
       this.setState({
-        stocks: stocks.filter(stock => stock.stocked),
+        stocks: this.props.stocks.filter(stock => stock.stocked),
       });
     } else {
       this.setState({
-        stocks,
+        stocks: this.props.stocks,
       });
     }
   }
@@ -172,4 +151,29 @@ class FilterableProductTable extends React.Component {
   }
 }
 
-ReactDOM.render(<FilterableProductTable />, document.querySelector('#app'));
+FilterableProductTable.propTypes = {
+  stocks: PropTypes.array,
+};
+
+const stocks = [
+  {
+    category: 'Sporting Goods', price: '$49.99', stocked: true, name: 'Football',
+  },
+  {
+    category: 'Sporting Goods', price: '$9.99', stocked: true, name: 'Baseball',
+  },
+  {
+    category: 'Sporting Goods', price: '$29.99', stocked: false, name: 'Basketball',
+  },
+  {
+    category: 'Electronics', price: '$99.99', stocked: true, name: 'iPod Touch',
+  },
+  {
+    category: 'Electronics', price: '$399.99', stocked: false, name: 'iPhone 5',
+  },
+  {
+    category: 'Electronics', price: '$199.99', stocked: true, name: 'Nexus 7',
+  },
+];
+
+ReactDOM.render(<FilterableProductTable stocks={stocks} />, document.querySelector('#app'));
